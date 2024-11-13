@@ -16,6 +16,14 @@ public class CollectibleItem : MonoBehaviour
         if (!canCollect) return;
 
         inventory.AddItem(itemType);            //아이템을 인벤토리에 추가 
+        
+        if(FloatingTextManager.instance != null )
+        {
+            Vector3 textPostion = transform.position + Vector3.up * 0.5f;                   //아이템 위치보다 약간 위에 텍스트 생성
+            FloatingTextManager.instance.Show($" + {itemName}", textPostion);
+        }
+
+
         Debug.Log($"{itemName} 수집 완료");     //아이템 수집 완료 메세지 출력
         StartCoroutine(RespawnRoutione());      //아이템 리스폰 코루틴 실행 
     }
